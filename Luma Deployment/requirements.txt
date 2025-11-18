@@ -1,0 +1,30 @@
+# Flask and core dependencies
+Flask==3.0.0
+Werkzeug==3.0.1
+
+# CORS support for frontend API calls
+flask-cors==4.0.0
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Database (if using SQLAlchemy)
+# SQLAlchemy==2.0.23
+# Flask-SQLAlchemy==3.1.1
+
+# Authentication & Security (if needed)
+# Flask-JWT-Extended==4.6.0
+# bcrypt==4.1.1
+
+# HTTP requests (if calling external APIs)
+requests==2.31.0
+
+# Date/time utilities
+python-dateutil==2.8.2
+
+# JSON handling
+# (built-in with Python, but included for reference)
+
+# Logging and monitoring
+# gunicorn==21.2.0  # Production WSGI server
+
