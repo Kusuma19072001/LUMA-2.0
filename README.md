@@ -12,6 +12,7 @@ LUMA is a compassionate emotional wellness companion built with React, TypeScrip
   - Personalized micro-coaching plans
   - Voice input and output support
   - Context-aware conversation history
+  - Real-time chat interface with message history
 
 - **🎨 MoodCanvas**
   - Visual mood expression through AI-generated artwork
@@ -19,6 +20,7 @@ LUMA is a compassionate emotional wellness companion built with React, TypeScrip
   - Mood tracking and comparison over time
   - Journal entries attached to mood entries
   - Download and save mood artwork
+  - AI-powered mood visualization
 
 - **🧘 Mindfulness Exercises**
   - Guided meditation sessions
@@ -26,26 +28,32 @@ LUMA is a compassionate emotional wellness companion built with React, TypeScrip
   - Exercise tracking and history
   - Personalized exercise recommendations
   - Progress tracking
+  - Session duration tracking
 
 - **📊 Analytics Dashboard**
-  - Mood trends visualization
+  - Mood trends visualization with interactive charts
   - Activity streaks tracking
   - Weekly activity overview
   - Comprehensive usage statistics
   - Engagement metrics
+  - Data visualization using Recharts
 
-- **👤 User Profile**
+- **👤 User Profile & Authentication**
+  - Secure user authentication (login/signup)
   - Customizable user preferences
   - PIN security for privacy
   - Personalization settings
   - Support focus selection
   - Notification preferences
+  - Theme customization (light/dark mode)
+  - User statistics tracking
 
 - **🔔 Reminders & Achievements**
   - Customizable reminders
   - Achievement tracking
   - Progress milestones
   - Engagement rewards
+  - Streak tracking
 
 - **📝 Wellness Surveys**
   - Daily mood check-ins
@@ -53,24 +61,38 @@ LUMA is a compassionate emotional wellness companion built with React, TypeScrip
   - Personalized suggestions based on responses
   - Survey history tracking
 
+- **💬 Live Support**
+  - Live support page for user assistance
+  - Direct access to help resources
+
+- **🏠 Welcome & Home**
+  - Welcome page for new users
+  - Home dashboard with quick access to features
+
 ## 🛠️ Tech Stack
 
 ### Frontend
 - **React 19.2.0** - UI framework
 - **TypeScript 5.9.3** - Type safety
 - **Vite 7.2.2** - Build tool and dev server
-- **Tailwind CSS 3.4.14** - Styling
-- **Lucide React** - Icon library
+- **Tailwind CSS 3.4.14** - Utility-first CSS framework
+- **React Router DOM 7.9.6** - Client-side routing
+- **Lucide React 0.553.0** - Icon library
+- **Recharts 3.4.1** - Chart library for analytics
 
 ### AI & Services
-- **Google Gemini AI** - Conversational AI and image generation
-- **IndexedDB** - Local browser database
-- **Web Speech API** - Voice input/output
+- **Google Gemini AI (@google/generative-ai 0.24.1)** - Conversational AI and image generation
+- **IndexedDB** - Local browser database for data persistence
+- **Web Speech API** - Voice input/output capabilities
+
+### Additional Libraries
+- **@tensorflow/tfjs 4.15.0** - TensorFlow.js for machine learning
+- **face-api.js 0.22.2** & **@vladmandic/face-api 1.7.14** - Face detection capabilities
 
 ### Development Tools
-- **PostCSS** - CSS processing
-- **Autoprefixer** - CSS vendor prefixes
-- **TypeScript** - Type checking
+- **PostCSS 8.4.49** - CSS processing
+- **Autoprefixer 10.4.20** - CSS vendor prefixes
+- **TypeScript** - Type checking and static analysis
 
 ## 📋 Prerequisites
 
@@ -85,7 +107,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd "LUMA NEW 2.0"
+   cd "Luma Analytics"
    ```
 
 2. **Install dependencies**
@@ -113,47 +135,64 @@ Before you begin, ensure you have the following installed:
 ## 🏗️ Project Structure
 
 ```
-LUMA NEW 2.0/
+Luma Analytics/
 ├── src/
 │   ├── components/          # Reusable UI components
-│   │   ├── ChatBubble.tsx
-│   │   ├── ChatInput.tsx
-│   │   ├── EditPreferencesModal.tsx
-│   │   ├── PinSecurityModal.tsx
-│   │   ├── PlanCard.tsx
-│   │   ├── SignalCard.tsx
-│   │   └── SurveyModal.tsx
+│   │   ├── AppLayout.tsx           # Main application layout
+│   │   ├── ChatBubble.tsx          # Chat message bubbles
+│   │   ├── ChatInput.tsx           # Chat input component
+│   │   ├── EditPreferencesModal.tsx # User preferences modal
+│   │   ├── PinSecurityModal.tsx    # PIN security setup
+│   │   ├── PlanCard.tsx            # Coaching plan cards
+│   │   ├── ProtectedRoute.tsx      # Route protection component
+│   │   ├── SignalCard.tsx          # Signal/notification cards
+│   │   └── SurveyModal.tsx         # Wellness survey modal
+│   ├── contexts/            # React contexts
+│   │   └── AuthContext.tsx         # Authentication context
 │   ├── hooks/               # Custom React hooks
-│   │   ├── useChat.ts
-│   │   └── useVoice.ts
+│   │   ├── useAnalytics.ts         # Analytics data hook
+│   │   ├── useChat.ts              # Chat functionality hook
+│   │   └── useVoice.ts             # Voice input/output hook
 │   ├── pages/               # Page components
-│   │   ├── AchievementsPage.tsx
-│   │   ├── AnalyticsPage.tsx
-│   │   ├── BreatheSyncPage.tsx
-│   │   ├── ChatPage.tsx
-│   │   ├── ExercisesPage.tsx
-│   │   ├── MoodCanvasPage.tsx
-│   │   ├── ProfilePage.tsx
-│   │   ├── RemindersPage.tsx
-│   │   └── WelcomePage.tsx
+│   │   ├── AchievementsPage.tsx    # Achievements tracking
+│   │   ├── Analytics.tsx           # Analytics page (alternative)
+│   │   ├── AnalyticsPage.tsx       # Analytics dashboard
+│   │   ├── BreatheSyncPage.tsx     # Breathing exercises
+│   │   ├── ChatPage.tsx            # AI chat interface
+│   │   ├── ExercisesPage.tsx       # Mindfulness exercises
+│   │   ├── ForgotPasswordPage.tsx  # Password recovery
+│   │   ├── HomePage.tsx            # Home dashboard
+│   │   ├── LiveSupportPage.tsx     # Live support
+│   │   ├── LoginPage.tsx           # User login
+│   │   ├── MoodCanvasPage.tsx      # Mood canvas
+│   │   ├── ProfilePage.tsx         # User profile
+│   │   ├── RemindersPage.tsx       # Reminders management
+│   │   ├── SignupPage.tsx          # User registration
+│   │   └── WelcomePage.tsx         # Welcome screen
 │   ├── services/            # API and database services
-│   │   ├── database.ts      # IndexedDB operations
-│   │   ├── gemini.ts        # Gemini chat API
-│   │   └── geminiImage.ts   # Gemini image generation
+│   │   ├── database.ts             # IndexedDB operations
+│   │   ├── gemini.ts               # Gemini chat API
+│   │   └── geminiImage.ts          # Gemini image generation
 │   ├── types/               # TypeScript type definitions
-│   │   ├── chat.ts
-│   │   └── database.ts
-│   ├── App.tsx              # Main app component
+│   │   ├── chat.ts                 # Chat-related types
+│   │   └── database.ts             # Database schema types
+│   ├── utils/               # Utility functions
+│   │   ├── indexedDB.ts            # IndexedDB utilities
+│   │   └── userDB.ts               # User database utilities
+│   ├── App.tsx              # Main app component with routing
 │   ├── main.tsx             # App entry point
 │   └── index.css            # Global styles
 ├── public/                  # Static assets
-├── dist/                    # Build output
+│   └── vite.svg
+├── dist/                    # Build output (generated)
 ├── index.html               # HTML template
 ├── package.json             # Dependencies and scripts
+├── package-lock.json        # Dependency lock file
 ├── tsconfig.json            # TypeScript configuration
 ├── tailwind.config.cjs      # Tailwind CSS configuration
 ├── vite.config.ts           # Vite configuration
-└── postcss.config.cjs       # PostCSS configuration
+├── postcss.config.cjs       # PostCSS configuration
+└── README.md                # This file
 ```
 
 ## 📜 Available Scripts
@@ -263,11 +302,13 @@ The app includes:
 
 ## 🔒 Privacy & Security
 
-- All data is stored locally in the browser (IndexedDB)
-- No data is sent to external servers except for AI API calls
-- PIN security option for profile access
-- User preferences for privacy settings
-- Optional journal privacy settings
+- **Local-First Architecture**: All user data is stored locally in the browser (IndexedDB)
+- **No External Data Storage**: No data is sent to external servers except for AI API calls to Google Gemini
+- **PIN Security**: Optional PIN protection for profile access
+- **Session Management**: Secure session handling using localStorage
+- **Privacy Settings**: User preferences for privacy settings and journal privacy
+- **Client-Side Processing**: All data processing happens client-side
+- **No Backend Required**: Fully functional as a client-side application
 
 ## 🐛 Troubleshooting
 
@@ -292,16 +333,33 @@ If the build fails:
 1. Ensure all dependencies are installed: `npm install`
 2. Check TypeScript errors: `npm run build`
 3. Verify Node.js version is 18 or higher
+4. Clear node_modules and reinstall: `rm -rf node_modules package-lock.json && npm install`
+
+### Voice Features Not Working
+
+If voice input/output doesn't work:
+1. Ensure you're using a browser that supports Web Speech API (Chrome, Edge, Safari)
+2. Check browser permissions for microphone access
+3. Verify HTTPS connection (required for microphone access in most browsers)
+
+### Database Not Initializing
+
+If the database fails to initialize:
+1. Check browser console for specific error messages
+2. Clear browser storage: Open DevTools > Application > Clear storage
+3. Ensure IndexedDB is enabled in your browser settings
+4. Try in an incognito/private window to rule out extension conflicts
 
 ## 📝 Development Guidelines
 
 ### Code Style
 
 - Use TypeScript for all new files
-- Follow React best practices
-- Use Tailwind CSS for styling (no component libraries)
+- Follow React best practices and hooks patterns
+- Use Tailwind CSS for styling (no component libraries like Ant Design, MUI, or Chakra UI)
 - Maintain type safety throughout
 - Use functional components with hooks
+- Follow the existing project structure and naming conventions
 
 ### Adding New Features
 
@@ -309,8 +367,19 @@ If the build fails:
 2. Create pages in `src/pages/`
 3. Add types in `src/types/`
 4. Add services in `src/services/`
-5. Update database schema if needed
-6. Add tests if applicable
+5. Add custom hooks in `src/hooks/` if needed
+6. Add contexts in `src/contexts/` for shared state
+7. Update database schema if needed
+8. Add routes in `src/App.tsx`
+9. Update this README if adding major features
+
+### Component Guidelines
+
+- Use Tailwind CSS utility classes for styling
+- Keep components focused and reusable
+- Use TypeScript interfaces for props
+- Implement proper error handling
+- Follow accessibility best practices
 
 ### Database Migrations
 
@@ -318,6 +387,20 @@ When updating the database schema:
 1. Increment `DB_VERSION` in `src/services/database.ts`
 2. Add migration logic in `onupgradeneeded`
 3. Update TypeScript types in `src/types/database.ts`
+
+### Routing
+
+The application uses React Router for navigation:
+- Public routes: `/login`, `/signup`, `/forgot-password`
+- Protected routes: `/home`, `/chat`, `/analytics`, `/exercises`, `/profile`, `/canvas`, `/breathesync`, `/reminders`, `/achievements`, `/live`
+- Default route redirects to `/home`
+
+### Authentication
+
+- User authentication is handled through `AuthContext`
+- Session management using localStorage
+- User data stored in IndexedDB via `userDB.ts`
+- Protected routes require authentication
 
 ## 🤝 Contributing
 
@@ -338,9 +421,44 @@ This project is private and proprietary.
 - Tailwind CSS for the utility-first CSS framework
 - Lucide for the beautiful icon library
 
+## 🚀 Deployment
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+This creates an optimized production build in the `dist/` directory.
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Deployment Options
+
+- **Static Hosting**: Deploy the `dist/` folder to any static hosting service
+- **Vercel**: Connect your repository for automatic deployments
+- **Netlify**: Deploy the `dist/` folder or connect your repository
+- **GitHub Pages**: Deploy the `dist/` folder to GitHub Pages
+
+**Note**: Remember to set your `VITE_GEMINI_API_KEY` environment variable in your hosting platform's environment settings.
+
 ## 📞 Support
 
 For issues, questions, or contributions, please open an issue on the repository.
+
+## 🔄 Version History
+
+- **v2.0** - Current version with full feature set
+  - AI-powered chat companion
+  - MoodCanvas with AI artwork
+  - Analytics dashboard
+  - Mindfulness exercises
+  - User authentication
+  - Reminders and achievements
 
 ---
 
